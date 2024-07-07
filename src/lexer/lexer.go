@@ -1,6 +1,8 @@
 package lexer
 
-import "go/token"
+import (
+	"github.com/AbdallahSafa/slime/src/token"
+)
 
 type Lexer struct {
 	input        string
@@ -28,13 +30,30 @@ func (l *Lexer) readChar() {
 func newToken(tokenType token.TokenType, ch byte) token.Token {
 	return token.Token{Type: tokenType, Literal: string(ch)}
 }
+func (l *Lexer) NextToken() token.Token {
+	var tokes token.Token
 
-func (l *Lexer) nextChar() token.Token {
-	var token token.Token
 	switch l.ch {
 	case '=':
-		token = newToken(token.ASSIGN, l.ch)
-	}
+		tokes = newToken(token.ASSIGN, l.ch)
 	case '+':
-
+		tokes = newToken(token.PLUS, l.ch)
+	case ';':
+		tokes = newToken(token.SEMICOLON, l.ch)
+	case '(':
+		tokes = newToken(token.LPAREN, l.ch)
+	case ')':
+		tokes = newToken(token.RPAREN, l.ch)
+	case '{':
+		tokes = newToken(token.LCURLY, l.ch)
+	case '}':
+		tokes = newToken(token.RCURLY, l.ch)
+	case ',':
+		tokes = newToken(token.COMMA, l.ch)
+	case 0:
+		tokes.Literal = ""
+		tokes.Type = token.EOF
+	}
+	l.readChar()
+	return tokes
 }
