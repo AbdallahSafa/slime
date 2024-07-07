@@ -1,4 +1,4 @@
-**# Slime Language Interpreter
+# Slime Language Interpreter
 
 Welcome to the Slime Language Interpreter project! This is a work-in-progress interpreter for the Slime programming language. The goal of this project is to develop a fully functional interpreter for a custom language that allows users to experiment with and learn about language design and implementation.
 
