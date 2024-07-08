@@ -34,6 +34,9 @@ const (
 	RETURN = "RETURN"
 	TRUE   = "TRUE"
 	FALSE  = "FALSE"
+
+	EQ    = "=="
+	NOTEQ = "!="
 )
 
 var keywords = map[string]TokenType{

@@ -61,12 +61,26 @@ func (l *Lexer) skipWhiteSpace() {
 	}
 }
 
+func (l *Lexer) peekNext() byte {
+	if l.readPosition >= len(l.input) {
+		return 0
+	} else {
+		return l.input[l.readPosition]
+	}
+}
+
 func (l *Lexer) NextToken() token.Token {
 	var tokes token.Token
 	l.skipWhiteSpace()
 	switch l.ch {
 	case '=':
-		tokes = newToken(token.ASSIGN, l.ch)
+		if l.peekNext() == '=' {
+			ch := l.ch
+			l.readChar()
+			tokes = token.Token{Type: token.EQ, Literal: string(ch) + string(l.ch)}
+		} else {
+			tokes = newToken(token.ASSIGN, l.ch)
+		}
 	case '+':
 		tokes = newToken(token.PLUS, l.ch)
 	case ';':
@@ -86,14 +100,19 @@ func (l *Lexer) NextToken() token.Token {
 	case '<':
 		tokes = newToken(token.LT, l.ch)
 	case '!':
-		tokes = newToken(token.BANG, l.ch)
+		if l.peekNext() == '=' {
+			ch := l.ch
+			l.readChar()
+			tokes = token.Token{Type: token.NOTEQ, Literal: string(ch) + string(l.ch)}
+		} else {
+			tokes = newToken(token.BANG, l.ch)
+		}
 	case '/':
 		tokes = newToken(token.BACKSLASH, l.ch)
 	case '*':
 		tokes = newToken(token.ASTERISK, l.ch)
 	case '-':
 		tokes = newToken(token.MINUS, l.ch)
-
 	case 0:
 		tokes.Literal = ""
 		tokes.Type = token.EOF
