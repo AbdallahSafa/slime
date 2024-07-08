@@ -9,8 +9,14 @@ const (
 	IDENTIFIER = "IDENTIFIER" // add, foobar, x, y, ...
 	INTEGER    = "INTEGER"    // 1343456
 
-	ASSIGN = "="
-	PLUS   = "+"
+	ASSIGN    = "="
+	PLUS      = "+"
+	MINUS     = "-"
+	BANG      = "!"
+	ASTERISK  = "*"
+	BACKSLASH = "/"
+	LT        = "<"
+	GT        = ">"
 
 	COMMA     = ","
 	SEMICOLON = ";"
