@@ -8,7 +8,6 @@ Welcome to the Slime Language Interpreter project! This is a work-in-progress in
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 
