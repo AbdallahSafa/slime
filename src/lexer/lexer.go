@@ -111,5 +111,6 @@ func (l *Lexer) NextToken() token.Token {
 		}
 	}
 	l.readChar()
+
 	return tokes
 }
