@@ -1,5 +1,7 @@
 package ast
 
+import "github.com/AbdallahSafa/slime/src/token"
+
 type Node interface {
 	TokenLiteral() string
 }
@@ -25,3 +27,23 @@ func (p *Program) TokenLiteral() string {
 		return ""
 	}
 }
+
+type Identifier struct { // var name
+	Token token.Token
+	Value string
+}
+
+func (i *Identifier) expressionNode()      {}
+func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+
+type LetStatement struct {
+	Token token.Token
+	Name  *Identifier
+	Value Expression
+}
+
+func (ls *LetStatement) TokenLiteral() string {
+	return ls.Token.Literal
+}
+
+func (ls *LetStatement) statementNode() {}
