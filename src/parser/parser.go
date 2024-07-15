@@ -10,6 +10,7 @@ type Parser struct {
 	l         *lexer.Lexer
 	curToken  token.Token
 	peekToken token.Token
+	errors    []string
 }
 
 func (p *Parser) nextToken() {
@@ -18,10 +19,14 @@ func (p *Parser) nextToken() {
 }
 
 func New(l *lexer.Lexer) *Parser {
-	p := &Parser{l: l}
+	p := &Parser{l: l, errors: []string{}}
 	p.nextToken()
 	p.nextToken()
 	return p
+}
+
+func (p *Parser) Errors() []string {
+	return p.errors
 }
 
 func (p *Parser) ParseProgram() *ast.Program {
